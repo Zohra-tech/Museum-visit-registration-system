@@ -1,12 +1,13 @@
 <?php
 $host = "localhost";
+$port = 3306;
 $dbname = "museum_db";
 $username = "root";
-$password = ""; // Enter your MySQL password here
+$password = "YOUR_NEW_MYSQL_PASSWORD";
 
 try {
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
         $username,
         $password,
         [
@@ -14,7 +15,8 @@ try {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
+
 } catch (PDOException $e) {
-    exit("Database connection failed. Please check your configuration.");
+    exit("Database error: " . $e->getMessage());
 }
 ?>
