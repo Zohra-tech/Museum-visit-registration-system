@@ -78,3 +78,31 @@ button:hover {
 .view-link:hover {
     text-decoration: underline;
 }
+
+
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #dbe2ea;
+    text-align: left;
+}
+
+th {
+    background: #25476a;
+    color: white;
+}
+
+.success {
+    color: #167443;
+    font-weight: bold;
+}
