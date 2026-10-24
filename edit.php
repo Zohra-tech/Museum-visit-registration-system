@@ -52,9 +52,46 @@ function e($value) {
                min="<?= date('Y-m-d') ?>"
                value="<?= e($record['visit_date']) ?>" required>
 
-        <label for="visit_time">Visit Time</label>
-        <input type="time" id="visit_time" name="visit_time"
-               value="<?= e(substr($record['visit_time'], 0, 5)) ?>" required>
+        
+<label for="visit_time">Visit Time</label>
+<input
+    type="time"
+    id="visit_time"
+    name="visit_time"
+    min="09:00"
+    max="17:00"
+    value="<?= e(substr($record['visit_time'], 0, 5)) ?>"
+    required
+>
+
+<small id="office-hours-message"
+       style="display: none; color: red; margin-top: 5px;">
+    Office hours are from 9:00 AM to 5:00 PM.
+</small>
+
+<script>
+    const visitTime = document.getElementById("visit_time");
+    const officeMessage = document.getElementById("office-hours-message");
+
+    function validateOfficeHours() {
+        const time = visitTime.value;
+
+        if (time && (time < "09:00" || time > "17:00")) {
+            officeMessage.style.display = "block";
+            visitTime.style.border = "2px solid red";
+            visitTime.setCustomValidity(
+                "Office hours are from 9:00 AM to 5:00 PM."
+            );
+        } else {
+            officeMessage.style.display = "none";
+            visitTime.style.border = "";
+            visitTime.setCustomValidity("");
+        }
+    }
+
+    visitTime.addEventListener("input", validateOfficeHours);
+    visitTime.addEventListener("change", validateOfficeHours);
+</script>
 
         <button type="submit">Update Registration</button>
     </form>
